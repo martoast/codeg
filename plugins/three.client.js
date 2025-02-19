@@ -64,14 +64,19 @@ export default defineNuxtPlugin(() => {
         renderer.setSize(container.clientWidth, container.clientHeight)
         container.appendChild(renderer.domElement)
 
+        // Remove all user interactions but keep auto-rotation
         const controls = new OrbitControls(camera, renderer.domElement)
-        controls.enableZoom = false // Disabled zoom
-        controls.enablePan = false  // Disabled panning
+        controls.enableZoom = false
+        controls.enablePan = false
+        controls.enableRotate = false // Disable manual rotation
         controls.enableDamping = true
         controls.autoRotate = true
         controls.autoRotateSpeed = 1
         controls.target.set(0, 0, 0)
         controls.update()
+
+        // Disable pointer events on the canvas
+        renderer.domElement.style.pointerEvents = 'none'
 
         startTime = Date.now()
         animate()

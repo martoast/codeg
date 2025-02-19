@@ -1,6 +1,6 @@
 <!-- components/ImageSlideshow.vue -->
 <template>
-    <div class="relative mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
+    <div class="relative mt-16 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
       <!-- Main image container -->
       <div 
         class="relative overflow-hidden xl:rounded-3xl"
