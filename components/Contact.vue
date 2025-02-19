@@ -192,7 +192,6 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { ref } from 'vue'
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/vue/24/outline'
@@ -209,21 +208,22 @@ const formData = ref({
 const handleSubmit = async (e) => {
   try {
     isSubmitting.value = true
-    const form = e.target
-    const formData = new FormData(form)
+    const formElement = e.target
+    // Use a different variable name to avoid shadowing
+    const payload = new FormData(formElement)
 
     // Submit to Netlify
     const response = await fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
+      body: new URLSearchParams(payload).toString()
     })
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    // Clear form after successful submission
+    // Clear the reactive form data to reset the input fields
     formData.value = {
       firstName: '',
       lastName: '',
@@ -231,6 +231,9 @@ const handleSubmit = async (e) => {
       phone: '',
       message: ''
     }
+    
+    // Optionally reset the native form as well
+    formElement.reset()
     
     alert('Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.')
   } catch (error) {
