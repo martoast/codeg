@@ -95,7 +95,16 @@
       </div>
 
       <!-- Contact Form Section -->
-      <form @submit.prevent="handleSubmit" class="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48">
+      <form
+        name="contact-codeg"
+        method="POST"
+        data-netlify="true"
+        @submit.prevent="handleSubmit"
+        class="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48"
+      >
+        <!-- Hidden input for Netlify Forms -->
+        <input type="hidden" name="form-name" value="contact-codeg" />
+        
         <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
           <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
@@ -197,13 +206,23 @@ const formData = ref({
   message: ''
 })
 
-const handleSubmit = async () => {
+const handleSubmit = async (e) => {
   try {
     isSubmitting.value = true
-    // Here you would implement your form submission logic
-    // For example:
-    // await submitForm(formData.value)
-    
+    const form = e.target
+    const formData = new FormData(form)
+
+    // Submit to Netlify
+    const response = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
     // Clear form after successful submission
     formData.value = {
       firstName: '',
@@ -215,6 +234,7 @@ const handleSubmit = async () => {
     
     alert('Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.')
   } catch (error) {
+    console.error('Error submitting form:', error)
     alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.')
   } finally {
     isSubmitting.value = false

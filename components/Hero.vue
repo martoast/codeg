@@ -179,7 +179,7 @@
                 <p
                   class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none"
                 >
-                CODEG se dedica a formar líderes integrales, fundamentados en valores familiares, principios religiosos y excelencia educativa.
+                Inspirando líderes, transformando comunidades
                 </p>
                 <div class="mt-10 flex items-center gap-x-6">
                   <a

@@ -20,7 +20,7 @@
 const footerNavigation = {
   main: [
   { name: "Misión", href: "#mission" },
-  { name: "Eventos", href: "#eventos" },
+  { name: "Eventos", href: "#events" },
   { name: "Contacto", href: "#contact" },
   ],
   social: [
