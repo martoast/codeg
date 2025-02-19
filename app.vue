@@ -15,3 +15,14 @@
     <Footer/>
   </div>
 </template>
+
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Comunidad para el Desarrollo Generacional',
+  ogTitle: 'Comunidad para el Desarrollo Generacional',
+  description: 'Inspirando líderes, transformando comunidades',
+  ogDescription: 'Inspirando líderes, transformando comunidades',
+  ogImage: '/logo.jpg',
+  twitterCard: 'summary_large_image',
+})
+</script>
