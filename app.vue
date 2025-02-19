@@ -8,7 +8,7 @@
       '/3.jpeg',
       '/4.jpeg',
     ]"/>
-    <LogoCloud/>
+    <!-- <LogoCloud/> -->
     <Events id="events"/>
     <Blog/>
     <Contact id="contact"/>
